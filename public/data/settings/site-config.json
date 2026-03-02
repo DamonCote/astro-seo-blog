@@ -1,52 +1,52 @@
 {
-  "title": "Astro SEO Blog",
-  "description": "Modern SEO-optimized blog built with Astro. Fast, scalable, and feature-rich blogging platform.",
-  "url": "https://astroseoblog.com",
-  "author": "Kevin Gabeci",
-  "authorEmail": "kgabeci@gmail.com",
-  "authorWebsite": "https://kevingabeci.com",
-  "authorAvatar": "/Favicon.png",
-  "locale": "en",
-  "ogImage": "/og-image.jpg",
-  "navItems": [
-    {
-      "label": "Home",
-      "href": "/"
+    "title": "Astro SEO Blog",
+    "description": "Modern SEO-optimized blog built with Astro. Fast, scalable, and feature-rich blogging platform.",
+    "url": "https://astroseoblog.com",
+    "author": "Damon Cote",
+    "authorEmail": "DamonCote7@gmail.com",
+    "authorWebsite": "https://damoncote.com",
+    "authorAvatar": "/Favicon.png",
+    "locale": "en",
+    "ogImage": "/og-image.jpg",
+    "navItems": [
+        {
+            "label": "Home",
+            "href": "/"
+        },
+        {
+            "label": "Blog",
+            "href": "/blog"
+        },
+        {
+            "label": "About",
+            "href": "/about"
+        }
+    ],
+    "postsPerPage": 10,
+    "recentPostsCount": 5,
+    "social": {
+        "twitter": "",
+        "github": "DamonCote",
+        "linkedin": "",
+        "instagram": "",
+        "youtube": "",
+        "discord": ""
     },
-    {
-      "label": "Blog",
-      "href": "/blog"
+    "features": {
+        "darkMode": true,
+        "search": true,
+        "comments": true,
+        "rss": true
     },
-    {
-      "label": "About",
-      "href": "/about"
+    "gaId": "",
+    "blogCTA": {
+        "enabled": false,
+        "title": "Subscribe to Newsletter",
+        "description": "Get the latest posts delivered right to your inbox.",
+        "buttonText": "Subscribe",
+        "buttonUrl": "#",
+        "secondaryText": "Join our community",
+        "showStats": false,
+        "stats": []
     }
-  ],
-  "postsPerPage": 10,
-  "recentPostsCount": 5,
-  "social": {
-    "twitter": "",
-    "github": "kgabeci",
-    "linkedin": "https://www.linkedin.com/in/kevin-gabeci/",
-    "instagram": "",
-    "youtube": "",
-    "discord": ""
-  },
-  "features": {
-    "darkMode": true,
-    "search": true,
-    "comments": true,
-    "rss": true
-  },
-  "gaId": "",
-  "blogCTA": {
-    "enabled": false,
-    "title": "Subscribe to Newsletter",
-    "description": "Get the latest posts delivered right to your inbox.",
-    "buttonText": "Subscribe",
-    "buttonUrl": "#",
-    "secondaryText": "Join our community",
-    "showStats": false,
-    "stats": []
-  }
 }
