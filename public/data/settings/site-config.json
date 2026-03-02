@@ -1,7 +1,8 @@
 {
-    "title": "Astro SEO Blog",
+    "title": "EvoArt.ai",
+    "admin_title": "Blog Admin",
     "description": "Modern SEO-optimized blog built with Astro. Fast, scalable, and feature-rich blogging platform.",
-    "url": "https://astroseoblog.com",
+    "url": "https://www.evoart.ai",
     "author": "Damon Cote",
     "authorEmail": "DamonCote7@gmail.com",
     "authorWebsite": "https://damoncote.com",
@@ -40,13 +41,26 @@
     },
     "gaId": "",
     "blogCTA": {
-        "enabled": false,
+        "enabled": true,
         "title": "Subscribe to Newsletter",
         "description": "Get the latest posts delivered right to your inbox.",
         "buttonText": "Subscribe",
         "buttonUrl": "#",
         "secondaryText": "Join our community",
         "showStats": false,
-        "stats": []
+        "stats": [
+            {
+                "number": "1,000+",
+                "label": "Waitlist Members"
+            },
+            {
+                "number": "First 500",
+                "label": "Get Priority"
+            },
+            {
+                "number": "Early 2025",
+                "label": "Launch Date"
+            }
+        ]
     }
 }
