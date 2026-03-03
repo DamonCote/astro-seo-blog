@@ -4,6 +4,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import markdoc from "@astrojs/markdoc";
 import node from "@astrojs/node";
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
         mdx(),
         react(),
         markdoc(),
+        svelte(),
     ],
     output: "server",
     adapter: node({
@@ -36,9 +38,14 @@ export default defineConfig({
         ssr: {
             noExternal: ["direction", "lodash"],
         },
+        resolve: {
+            alias: {
+                fs: "node:fs",
+            },
+        },
     },
     image: {
-        domains: ["localhost"],
+        domains: ["localhost", "en.coffeestyle.info"],
     },
     markdown: {
         shikiConfig: {
