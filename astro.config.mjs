@@ -7,7 +7,7 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://astroseoblog.com",
+    site: "https://en.coffeestyle.info/",
     trailingSlash: "never", // Enforce consistent URLs without trailing slashes
     integrations: [
         tailwind({
