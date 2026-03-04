@@ -9,7 +9,6 @@ export const GET: APIRoute = async () => {
   try {
     const data = await fs.readFile(CATEGORIES_FILE, 'utf-8');
     const { categories } = JSON.parse(data);
-
     return new Response(JSON.stringify({ categories }), {
       status: 200,
       headers: {
@@ -50,7 +49,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
     const data = await fs.readFile(CATEGORIES_FILE, 'utf-8');
     const { categories } = JSON.parse(data);
-    console.log('Current categories:', categories);
+
     // Check if category already exists
     const exists = categories.some((cat: { name: string }) =>
       cat.name.toLowerCase() === name.toLowerCase()

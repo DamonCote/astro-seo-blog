@@ -1,10 +1,11 @@
 ---
 import AdminLayout from '../../layouts/AdminLayout.astro';
-import { getCategories } from '../../lib/data';
+import {  getCategories } from '../../lib/data';
 import { getPublishedBlogPosts } from '../../lib/posts';
 
 // Get categories
 const categoriesData = await getCategories();
+
 
 // Get all posts to count usage
 const allPosts = await getPublishedBlogPosts();

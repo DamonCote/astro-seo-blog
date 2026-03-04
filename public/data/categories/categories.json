@@ -1,3 +1,9 @@
 {
-    "categories": []
+  "categories": [
+    {
+      "id": "knowledge",
+      "name": "Knowledge",
+      "slug": "knowledge"
+    }
+  ]
 }
