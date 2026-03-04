@@ -1,0 +1,12 @@
+.DS_Store
+node_modules
+dist
+develop
+.git
+.gitignore
+.vscode
+.idea
+*.log
+*.env
+*.local
+.github
