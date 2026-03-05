@@ -19,64 +19,62 @@ export const GET: APIRoute = async () => {
       posts: await getPublishedBlogPosts(lang)
     }))
   );
-
+  const now = new Date();
+  const todayLastmod = now.toISOString().split('T')[0];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${SITE_CONFIG.url}/</loc>
     <changefreq>daily</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>1.0</priority>
   </url>
-
-  <!-- Blog index (English) -->
   <url>
     <loc>${SITE_CONFIG.url}/blog</loc>
     <changefreq>daily</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>0.9</priority>
   </url>
-
-  <!-- Blog index (Other languages) -->
   ${SUPPORTED_LANGUAGES.filter(lang => lang !== DEFAULT_LANGUAGE).map(lang => {
     const prefix = getLanguagePrefix(lang);
     return `
   <url>
     <loc>${SITE_CONFIG.url}${prefix}/blog</loc>
     <changefreq>daily</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>0.9</priority>
   </url>`;
   }).join('')}
-
-  <!-- About page -->
   <url>
     <loc>${SITE_CONFIG.url}/about</loc>
     <changefreq>monthly</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>0.8</priority>
   </url>
-
-  <!-- Policy pages -->
   <url>
     <loc>${SITE_CONFIG.url}/terms-of-service</loc>
     <changefreq>monthly</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>${SITE_CONFIG.url}/privacy-policy</loc>
     <changefreq>monthly</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>${SITE_CONFIG.url}/refund-cancellation-policy</loc>
     <changefreq>monthly</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>${SITE_CONFIG.url}/ai-content-usage-policy</loc>
     <changefreq>monthly</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>0.5</priority>
   </url>
-
-  <!-- Blog posts (All languages) -->
   ${allLanguagePosts.flatMap(({ lang, posts: langPosts }) => {
     const prefix = getLanguagePrefix(lang);
     return langPosts.map(post => `
@@ -87,8 +85,6 @@ export const GET: APIRoute = async () => {
     <priority>0.8</priority>
   </url>`);
   }).join('')}
-
-  <!-- Category pages (English) -->
   ${categories.filter(category => {
     // Only include if category has posts
     const postsInCategory = posts.filter(
@@ -113,8 +109,6 @@ export const GET: APIRoute = async () => {
     <priority>0.7</priority>
   </url>`;
   }).join('')}
-
-  <!-- Category pages (Other languages) -->
   ${allLanguagePosts.filter(({ lang }) => lang !== DEFAULT_LANGUAGE).flatMap(({ lang, posts: langPosts }) => {
     const prefix = getLanguagePrefix(lang);
     return categories.filter(category => {
@@ -142,8 +136,6 @@ export const GET: APIRoute = async () => {
   </url>`;
     });
   }).join('')}
-
-  <!-- Tag pages (English) -->
   ${[...new Set(tags.map(tag => normalizeTagName(tag)))].filter(normalizedTag => {
     // Only include if tag has 5+ posts (quality threshold)
     const postsWithTag = posts.filter(post =>
@@ -168,8 +160,6 @@ export const GET: APIRoute = async () => {
     <priority>0.6</priority>
   </url>`;
   }).join('')}
-
-  <!-- Tag pages (Other languages) -->
   ${allLanguagePosts.flatMap(({ lang, posts: langPosts }) => {
     if (lang === DEFAULT_LANGUAGE) return [];
     const prefix = getLanguagePrefix(lang);
@@ -203,11 +193,10 @@ export const GET: APIRoute = async () => {
   </url>`;
     });
   }).join('')}
-
-  <!-- Author page -->
   <url>
     <loc>${SITE_CONFIG.url}/author/damoncote</loc>
     <changefreq>monthly</changefreq>
+    <lastmod>${todayLastmod}</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>`;

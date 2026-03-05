@@ -3,18 +3,18 @@ import { getPublishedBlogPosts } from '../../lib/posts';
 import { formatDate } from '../../lib/utils';
 import { normalizeTagName } from '../../lib/utils';
 
-// Get the 3 latest blog posts
+// Get the 6 latest blog posts
 const allPosts = await getPublishedBlogPosts();
-const latestPosts = allPosts.slice(0, 3);
+const latestPosts = allPosts.slice(0, 6);
 ---
 
 <section class="bg-surface py-24 lg:py-32">
   <div class="container max-w-6xl">
-    <div class="mb-20">
-      <h2 class="text-4xl lg:text-6xl font-display font-bold mb-6 leading-tight">
+    <div class="mb-10">
+      <h2 class="text-2xl lg:text-4xl font-display font-bold mb-2 leading-tight">
         LATEST POSTS
       </h2>
-      <p class="text-xl lg:text-2xl text-text-muted">
+      <p class="text-base text-text-muted">
         Read our latest articles and tutorials
       </p>
     </div>
@@ -40,10 +40,10 @@ const latestPosts = allPosts.slice(0, 3);
                   <span class="ml-3 px-3 py-1 bg-text text-background text-xs rounded-full">FEATURED</span>
                 )}
               </div>
-              <h3 class="text-2xl lg:text-3xl font-display font-bold mb-3 group-hover:opacity-70 transition-opacity">
+              <h3 class="text-xl lg:text-2xl font-display font-bold mb-3 group-hover:opacity-70 transition-opacity">
                 {post.data.title}
               </h3>
-              <p class="text-lg text-text-muted">
+              <p class="text-base text-text-muted">
                 {post.data.description}
               </p>
             </div>
@@ -55,7 +55,7 @@ const latestPosts = allPosts.slice(0, 3);
     <div class="mt-16 text-center">
       <a
         href="/blog"
-        class="inline-flex items-center gap-3 px-10 py-5 bg-text text-background rounded-full font-bold text-lg hover:bg-text/90 hover:scale-105 transition-all"
+        class="inline-flex items-center gap-3 px-6 py-2 bg-text text-background rounded-full font-bold text-xs hover:bg-text/90 hover:scale-105 transition-all"
       >
         VIEW ALL POSTS
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
