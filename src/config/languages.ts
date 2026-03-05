@@ -21,83 +21,6 @@ export const LANGUAGES: Record<string, Language> = {
     flag: '🇺🇸',
     dir: 'ltr',
   },
-  es: {
-    code: 'es',
-    name: 'Spanish',
-    nativeName: 'Español',
-    flag: '🇪🇸',
-    dir: 'ltr',
-  },
-  fr: {
-    code: 'fr',
-    name: 'French',
-    nativeName: 'Français',
-    flag: '🇫🇷',
-    dir: 'ltr',
-  },
-  de: {
-    code: 'de',
-    name: 'German',
-    nativeName: 'Deutsch',
-    flag: '🇩🇪',
-    dir: 'ltr',
-  },
-  ja: {
-    code: 'ja',
-    name: 'Japanese',
-    nativeName: '日本語',
-    flag: '🇯🇵',
-    dir: 'ltr',
-  },
-  ko: {
-    code: 'ko',
-    name: 'Korean',
-    nativeName: '한국어',
-    flag: '🇰🇷',
-    dir: 'ltr',
-  },
-  zh: {
-    code: 'zh',
-    name: 'Chinese',
-    nativeName: '中文',
-    flag: '🇨🇳',
-    dir: 'ltr',
-  },
-  pt: {
-    code: 'pt',
-    name: 'Portuguese',
-    nativeName: 'Português',
-    flag: '🇧🇷',
-    dir: 'ltr',
-  },
-  he: {
-    code: 'he',
-    name: 'Hebrew',
-    nativeName: 'עברית',
-    flag: '🇮🇱',
-    dir: 'rtl',
-  },
-  hi: {
-    code: 'hi',
-    name: 'Hindi',
-    nativeName: 'हिन्दी',
-    flag: '🇮🇳',
-    dir: 'ltr',
-  },
-  id: {
-    code: 'id',
-    name: 'Indonesian',
-    nativeName: 'Bahasa Indonesia',
-    flag: '🇮🇩',
-    dir: 'ltr',
-  },
-  vi: {
-    code: 'vi',
-    name: 'Vietnamese',
-    nativeName: 'Tiếng Việt',
-    flag: '🇻🇳',
-    dir: 'ltr',
-  },
 };
 
 export const SUPPORTED_LANGUAGES = Object.keys(LANGUAGES);
@@ -159,17 +82,6 @@ export function getAlternateLanguageUrls(slug: string, baseUrl: string): Record<
 export function getOGLocale(lang: string): string {
   const localeMap: Record<string, string> = {
     en: 'en_US',
-    es: 'es_ES',
-    fr: 'fr_FR',
-    de: 'de_DE',
-    ja: 'ja_JP',
-    ko: 'ko_KR',
-    zh: 'zh_CN',
-    pt: 'pt_BR',
-    he: 'he_IL',
-    hi: 'hi_IN',
-    id: 'id_ID',
-    vi: 'vi_VN',
   };
   return localeMap[lang] || lang;
 }

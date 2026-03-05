@@ -9,7 +9,6 @@ export const GET: APIRoute = async () => {
   try {
     const data = await fs.readFile(CATEGORIES_FILE, 'utf-8');
     const { categories } = JSON.parse(data);
-    
     return new Response(JSON.stringify({ categories }), {
       status: 200,
       headers: {
@@ -50,12 +49,12 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
     const data = await fs.readFile(CATEGORIES_FILE, 'utf-8');
     const { categories } = JSON.parse(data);
-    
+
     // Check if category already exists
     const exists = categories.some((cat: { name: string }) =>
       cat.name.toLowerCase() === name.toLowerCase()
     );
-    
+
     if (exists) {
       return new Response(JSON.stringify({ error: 'Category already exists' }), {
         status: 400,
@@ -64,19 +63,19 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         },
       });
     }
-    
+
     // Create slug from name
     const slug = name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
     const id = slug;
-    
+
     const newCategory = { id, name, slug };
     categories.push(newCategory);
-    
+
     await fs.writeFile(
-      CATEGORIES_FILE, 
+      CATEGORIES_FILE,
       JSON.stringify({ categories }, null, 2)
     );
-    
+
     return new Response(JSON.stringify({ category: newCategory }), {
       status: 201,
       headers: {
@@ -84,6 +83,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       },
     });
   } catch (error) {
+    console.error('Error creating category:', error);
     return new Response(JSON.stringify({ error: 'Failed to create category' }), {
       status: 500,
       headers: {
@@ -117,9 +117,9 @@ export const DELETE: APIRoute = async ({ request, cookies }) => {
 
     const data = await fs.readFile(CATEGORIES_FILE, 'utf-8');
     const { categories } = JSON.parse(data);
-    
+
     const filteredCategories = categories.filter((cat: { id: string }) => cat.id !== id);
-    
+
     if (filteredCategories.length === categories.length) {
       return new Response(JSON.stringify({ error: 'Category not found' }), {
         status: 404,
@@ -128,12 +128,12 @@ export const DELETE: APIRoute = async ({ request, cookies }) => {
         },
       });
     }
-    
+
     await fs.writeFile(
-      CATEGORIES_FILE, 
+      CATEGORIES_FILE,
       JSON.stringify({ categories: filteredCategories }, null, 2)
     );
-    
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {

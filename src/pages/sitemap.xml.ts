@@ -206,7 +206,7 @@ export const GET: APIRoute = async () => {
 
   <!-- Author page -->
   <url>
-    <loc>${SITE_CONFIG.url}/author/kevin</loc>
+    <loc>${SITE_CONFIG.url}/author/damoncote</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

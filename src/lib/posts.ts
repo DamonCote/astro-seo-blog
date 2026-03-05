@@ -131,7 +131,7 @@ export async function getAllBlogPosts(language: string = DEFAULT_LANGUAGE): Prom
   } catch (error) {
     // Directory doesn't exist yet, that's ok
   }
-  
+
   // 2. Also read from old location for backward compatibility (English only)
   if (language === DEFAULT_LANGUAGE) {
     const oldPostsDir = path.join(process.cwd(), 'src', 'content', 'blog');
@@ -175,7 +175,6 @@ export async function getPublishedBlogPosts(language: string = DEFAULT_LANGUAGE)
  */
 export async function getBlogPost(slug: string, language: string = DEFAULT_LANGUAGE): Promise<BlogPost | null> {
   const postsDir = path.join(process.cwd(), 'public', 'data', 'posts');
-
   // Determine file path based on language
   let filePath: string;
   if (language === DEFAULT_LANGUAGE) {

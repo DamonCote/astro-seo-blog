@@ -57,7 +57,7 @@ export interface SiteConfig {
  * Get categories dynamically from blog posts
  * This extracts all unique categories used in published posts
  */
-export async function getCategories(): Promise<Category[]> {
+export async function getCategoriesFromPosts(): Promise<Category[]> {
   try {
     // Try to get posts from MDX files
     const postsDir = path.join(process.cwd(), 'public/data/posts');
@@ -72,7 +72,7 @@ export async function getCategories(): Promise<Category[]> {
         const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
         if (frontmatterMatch) {
           const categoryMatch = frontmatterMatch[1].match(/category:\s*['"]*([^'"\n]+)['"]*/)
-;
+            ;
           if (categoryMatch && categoryMatch[1]) {
             categoriesSet.add(categoryMatch[1].trim());
           }
@@ -95,7 +95,6 @@ export async function getCategories(): Promise<Category[]> {
       { id: 'technology', name: 'Technology', slug: 'technology' }
     ];
   } catch (e) {
-    console.error('Error loading categories:', e);
     return [
       { id: 'getting-started', name: 'Getting Started', slug: 'getting-started' },
       { id: 'tutorials', name: 'Tutorials', slug: 'tutorials' },
@@ -104,6 +103,16 @@ export async function getCategories(): Promise<Category[]> {
   }
 }
 
+export async function getCategories(): Promise<Category[]> {
+  try {
+    const data = await fs.readFile(path.join(process.cwd(), 'public/data/categories/categories.json'), 'utf-8');
+    const { categories } = JSON.parse(data);
+    return categories;
+  } catch (e) {
+    console.error('Error loading categories from file:', e);
+    return [];
+  }
+}
 /**
  * Get tags dynamically from blog posts
  * This extracts all unique tags used in published posts

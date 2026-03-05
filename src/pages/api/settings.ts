@@ -15,13 +15,13 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
   try {
     const settings = await request.json();
-    
+
     // Update site-config.json
     const configPath = path.join(process.cwd(), 'public/data/settings/site-config.json');
-    
+
     // Read current config
     const currentConfig = JSON.parse(await fs.readFile(configPath, 'utf-8'));
-    
+
     // Update config with new settings
     const updatedConfig = {
       ...currentConfig,
@@ -61,10 +61,10 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         ]
       }
     };
-    
+
     // Save updated config
     await fs.writeFile(configPath, JSON.stringify(updatedConfig, null, 2));
-    
+
     // Update SEO settings JSON
     const seoSettingsPath = path.join(process.cwd(), 'public/data/settings/seo-settings.json');
     const seoSettings = {
@@ -81,11 +81,11 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         keywords: settings.metaKeywords || ''
       }
     };
-    
+
     await fs.writeFile(seoSettingsPath, JSON.stringify(seoSettings, null, 2));
-    
+
     // Also update the src/data/site-config.ts to trigger rebuild
-    const srcConfigPath = path.join(process.cwd(), 'src/data/site-config.ts');
+    const srcConfigPath = path.join(process.cwd(), 'public/data/site-config.ts');
     const srcConfigContent = `import fs from 'fs';
 import path from 'path';
 
@@ -97,9 +97,9 @@ const config = JSON.parse(configData);
 export const SITE_CONFIG = config;
 export type SiteConfig = typeof SITE_CONFIG;
 export const GA_MEASUREMENT_ID = config.gaId || "";`;
-    
+
     await fs.writeFile(srcConfigPath, srcConfigContent);
-    
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {

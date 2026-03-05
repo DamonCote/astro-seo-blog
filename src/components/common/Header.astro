@@ -1,18 +1,109 @@
 ---
 import { SITE_CONFIG } from '../../data/site-config';
 import ThemeToggle from './ThemeToggle.astro';
+
+// Check if we're on a policy page
+const isPolicyPage = Astro.url.pathname.includes('terms-of-service') ||
+                   Astro.url.pathname.includes('privacy-policy') ||
+                   Astro.url.pathname.includes('refund-cancellation-policy') ||
+                   Astro.url.pathname.includes('ai-content-usage-policy');
+
+// Check if we're on a blog page (including translated pages like /es/blog, /fr/blog, etc.)
+const isBlogPage = Astro.url.pathname.includes('/blog') || Astro.url.pathname.startsWith('/page/');
+
+export interface Props {
+  siteName?: string;
+  hideSearch?: boolean;
+  hideThemeToggle?: boolean;
+}
+const {
+  hideSearch = false,
+  hideThemeToggle = false,
+} = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-  <div class="container flex h-16 items-center justify-between">
+<header class="sticky top-0 z-50 w-full border-b header-bg backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div class="container flex  items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="flex items-center space-x-2 font-bold text-xl hover:opacity-80 transition-opacity">
-      <span>Apatero</span>
+    <a href="/" class="flex items-center ">
+      <span>
+        <img src="/logo.jpg" alt={`${SITE_CONFIG.title} Logo`}  />
+      </span>
     </a>
-    
-    <div class="flex items-center gap-4">
-      <!-- Theme toggle -->
-      {SITE_CONFIG.features.darkMode && <ThemeToggle />}
+    <div class="flex space-between items-center gap-6">
+      <ul class="navbar">
+        <li>
+          <a href="/" class="text-sm text-text-muted hover:text-text transition-colors">Home</a>
+        </li>
+        <li>
+          <a href="/blog" class="text-sm text-text-muted hover:text-text transition-colors">Blog</a>
+        
+        </li>
+        <li>
+          <a href="/about" class="text-sm text-text-muted hover:text-text transition-colors">About</a>
+        </li>
+      </ul>
+      </div>
+    <div class="flex items-center gap-1">
+       
+
+    <!-- Navigation buttons -->
+    {isPolicyPage ? (
+      <!-- Policy pages: Back to Home -->
+      <a
+        href="/"
+        class="flex items-center hover:opacity-70 transition-opacity text-text text-sm"
+        aria-label="Home"
+        title="Home"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12H3m7-7-7 7 7 7"></path>
+        </svg>
+        <span>Home</span>
+      </a>
+    ) : isBlogPage ? (
+      <!-- Blog pages: Search + Home -->
+      <div class=" flex ">
+        <a
+          href="/"
+          class="p-2 hover:opacity-70 transition-opacity"
+          aria-label="Home"
+          title="Home"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </a>
+        {!hideSearch && (
+          <button
+            id="search-trigger"
+            class="p-2 hover:opacity-70 transition-opacity"
+            aria-label="Open search (Ctrl+K)"
+            title="Search (Ctrl+K)"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="M21 21l-4.35-4.35"></path>
+            </svg>
+          </button>
+        )}
+      </div>
+    ) : !hideSearch && (
+      <!-- Other pages: Search only -->
+      <button
+        id="search-trigger"
+        class=" p-2 hover:opacity-70 transition-opacity"
+        aria-label="Open search (Ctrl+K)"
+        title="Search (Ctrl+K)"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+      </button>
+    )}
+    {!hideThemeToggle && <ThemeToggle />}
     </div>
   </div>
 </header>
