@@ -24,6 +24,10 @@ const defaultConfig = {
             noExternal: ["direction", "lodash"],
         },
     },
+    security: {
+        checkOrigin: false,
+        actionBodySizeLimit: 10 * 1024 * 1024, // 10 MB
+    },
 };
 const productionConfig = {
     vite: {
@@ -39,10 +43,18 @@ const productionConfig = {
             },
         },
     },
+    security: {
+        checkOrigin: false,
+        actionBodySizeLimit: 10 * 1024 * 1024, // 10 MB
+    },
 };
-// https://astro.build/config
-export default defineConfig({
+const configOptions = {
     site: baseURL,
+    publicDir: "public",
+    i18n: {
+        locales: ["en"],
+        defaultLocale: "en",
+    },
     trailingSlash: "never", // Enforce consistent URLs without trailing slashes
     integrations: [
         tailwind({
@@ -65,9 +77,8 @@ export default defineConfig({
         host: "0.0.0.0",
     },
     image: {
-        domains: ["localhost", "en.coffeestyle.info", "127.0.0.1", "10.4.4.13"],
+        domains: ["localhost", "en.coffeestyle.info"],
     },
-
     markdown: {
         shikiConfig: {
             theme: "github-light",
@@ -75,4 +86,6 @@ export default defineConfig({
         },
     },
     ...(isProduction ? productionConfig : defaultConfig),
-});
+};
+// https://astro.build/config
+export default defineConfig(configOptions);
