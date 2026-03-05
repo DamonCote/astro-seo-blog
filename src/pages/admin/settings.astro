@@ -9,7 +9,8 @@ let siteConfig = {
   title: 'My Astro Blog',
   description: '',
   url: '',
-  gaId: ''
+  gaId: '',
+  googleSearchConsole: ''
 };
 
 try {
@@ -25,6 +26,7 @@ const currentConfig = {
   siteDescription: siteConfig.description || '',
   siteUrl: siteConfig.url || '',
   gaId: siteConfig.gaId || '',
+  googleSearchConsole: siteConfig.googleSearchConsole || '',
   robotsIndex: true,
   robotsFollow: true,
 };
@@ -343,6 +345,29 @@ try {
           </div>
         </div>
       </div>
+
+      <!-- Google Search Console -->
+      <div >
+        <div class="pb-4 border-b border-border">
+          <h2 class="text-xl font-display font-bold uppercase">Google Search Console</h2>
+          <p class="text-sm text-text-muted mt-1">Verify your site with Google Search Console</p>
+        </div>
+        <div class="pt-4 space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-2">
+              Verification Meta Tag <code>google-site-verification</code> Content </label>
+            <input
+              type="text"
+              name="googleSearchConsole"
+              value={currentConfig.googleSearchConsole}
+              class="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-text"
+              placeholder="s2rRU3Hw0ViU_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+            />
+            <p class="text-xs text-text-muted mt-1">Enter the meta tag content provided by <a href="https://search.google.com/search-console/welcome" target="_blank" rel="noopener noreferrer">Google Search Console</a> for site verification.</p>
+          </div>
+        </div>
+      </div>
+
 
       <!-- Blog CTA Settings -->
       <div >

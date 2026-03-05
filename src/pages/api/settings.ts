@@ -29,6 +29,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       description: settings.siteDescription || currentConfig.description,
       url: settings.siteUrl || currentConfig.url,
       gaId: settings.gaId || currentConfig.gaId || '',
+      googleSearchConsole: settings.googleSearchConsole || currentConfig.googleSearchConsole || '',
       social: {
         twitter: settings.socialTwitter ? (settings.socialTwitter.startsWith('@') ? settings.socialTwitter : '@' + settings.socialTwitter) : currentConfig.social?.twitter || '',
         github: settings.socialGithub || currentConfig.social?.github || '',
