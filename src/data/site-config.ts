@@ -9,3 +9,4 @@ const config = JSON.parse(configData);
 export const SITE_CONFIG = config;
 export type SiteConfig = typeof SITE_CONFIG;
 export const GA_MEASUREMENT_ID = config.gaId || "";
+export const GOOGLE_SEARCH_CONSOLE = config.googleSearchConsole || "";

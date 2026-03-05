@@ -1,5 +1,5 @@
 ---
-import { SITE_CONFIG, GA_MEASUREMENT_ID } from '../data/site-config';
+import { SITE_CONFIG, GA_MEASUREMENT_ID, GOOGLE_SEARCH_CONSOLE } from '../data/site-config';
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
 import SEOHead from '../components/seo/SEOHead.astro'; 
@@ -73,6 +73,11 @@ const {
     <link rel="icon" type="image/png" sizes="16x16" href="/Favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Favicon.png" />
     <meta name="generator" content={Astro.generator} />
+    {GOOGLE_SEARCH_CONSOLE && (
+      <>
+      <meta name="google-site-verification" content={GOOGLE_SEARCH_CONSOLE}/>
+      </>
+    )}
 
     <!-- Google Analytics - Configure with your GA_MEASUREMENT_ID in site-config.json -->
     {GA_MEASUREMENT_ID && (
