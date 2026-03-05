@@ -1,0 +1,17 @@
+{
+    "authors": [
+        {
+            "id": "damoncote",
+            "name": "DamonCote",
+            "email": "damoncote7@gmail.com",
+            "bio": "Developer and content creator. I'm a full-stack developer who happens to love coffee. This space blends both passions—exploring coffee culture, history, and brewing techniques through a coder's lens. Whether optimizing code or perfecting a pour-over, I believe in crafting with care and curiosity. Join me at the intersection of tech and coffee, one cup at a time.",
+            "avatar": "",
+            "social": {
+                "twitter": "damoncote",
+                "github": "DamonCote",
+                "linkedin": "",
+                "website": ""
+            }
+        }
+    ]
+}

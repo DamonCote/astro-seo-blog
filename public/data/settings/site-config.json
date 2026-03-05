@@ -1,5 +1,5 @@
 {
-  "title": "CoffeeStyle: One Cup, One Lifestyle",
+  "title": "CoffeeStyle",
   "admin_title": "Blog Admin",
   "description": "we explore coffee culture, history, and the stories behind every bean. From ancient origins to modern brewing, we uncover the knowledge that deepens your connection to each cup. Whether you're discovering new rituals or savoring quiet mornings, this space is for curious minds and coffee hearts. Sip slowly, learn often, and live thoughtfully—one cup at a time.",
   "url": "https://en.coffeestyle.info",
@@ -39,7 +39,7 @@
     "comments": true,
     "rss": true
   },
-  "gaId": "",
+  "gaId": "G-MF8GTN7LYL",
   "blogCTA": {
     "enabled": true,
     "title": "Subscribe to Newsletter",
