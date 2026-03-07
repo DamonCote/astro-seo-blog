@@ -4,6 +4,7 @@ import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, getLanguagePrefix, getOGLocale }
 
 export interface Props {
   title: string;
+  subject: string;
   description: string;
   ogImage?: string;
   article?: {
@@ -37,6 +38,7 @@ export interface Props {
 
 const {
   title,
+  subject = SITE_CONFIG.subject, 
   description,
   ogImage = SITE_CONFIG.ogImage,
   article,
@@ -59,9 +61,11 @@ let canonicalPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const canonicalURL = new URL(canonicalPath, SITE_CONFIG.url);
 const ogImageURL = new URL(ogImage, SITE_CONFIG.url);
 
-const fullTitle = title === SITE_CONFIG.title
+const siteTitle = title === SITE_CONFIG.title
   ? title
   : `${title} | ${SITE_CONFIG.title}`;
+
+const fullTitle = subject ? `${siteTitle}: ${subject}` : siteTitle;
 
 // Generate hreflang URLs for multilingual support
 const hreflangs: Array<{ lang: string; url: string }> = [];
@@ -131,7 +135,7 @@ if (shouldGenerateHreflang) {
 ---
 
 <!-- Primary Meta Tags -->
-<title>{fullTitle}</title>
+<title>{fullTitle} </title>
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />

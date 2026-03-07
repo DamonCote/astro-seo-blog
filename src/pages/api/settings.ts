@@ -26,6 +26,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const updatedConfig = {
       ...currentConfig,
       title: settings.siteName || currentConfig.title,
+      subject: settings.siteSubject || currentConfig.subject || '',
       description: settings.siteDescription || currentConfig.description,
       url: settings.siteUrl || currentConfig.url,
       gaId: settings.gaId || currentConfig.gaId || '',
