@@ -9,6 +9,7 @@ import '../assets/styles/site.scss';
 
 export interface Props {
   title?: string;
+  subject?: string;
   description?: string;
   ogImage?: string;
   article?: {
@@ -45,6 +46,7 @@ export interface Props {
 
 const {
   title = SITE_CONFIG.title,
+  subject = SITE_CONFIG.subject,
   description = SITE_CONFIG.description,
   ogImage = SITE_CONFIG.ogImage,
   article,
@@ -103,6 +105,7 @@ const {
 
     <SEOHead
       title={title}
+      subject={subject}
       description={description}
       ogImage={ogImage}
       article={article}

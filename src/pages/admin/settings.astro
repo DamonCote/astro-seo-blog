@@ -7,6 +7,7 @@ import path from 'path';
 const configPath = path.join(process.cwd(), 'public', 'data', 'settings', 'site-config.json');
 let siteConfig = {
   title: 'My Astro Blog',
+  subject: '',
   description: '',
   url: '',
   gaId: '',
@@ -23,6 +24,7 @@ try {
 // Extract current values for the form
 const currentConfig = {
   siteName: siteConfig.title || 'My Astro Blog',
+  siteSubject: siteConfig.subject || '',
   siteDescription: siteConfig.description || '',
   siteUrl: siteConfig.url || '',
   gaId: siteConfig.gaId || '',
@@ -87,6 +89,16 @@ try {
                 required
                 class="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-text"
                 placeholder="My Awesome Blog"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Site Subject</label>
+              <input
+                type="text"
+                name="siteSubject"
+                value={currentConfig.siteSubject}
+                class="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-text"
+                placeholder="Site subject or tagline for SEO purposes"
               />
             </div>
             <div>
