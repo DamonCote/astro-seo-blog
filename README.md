@@ -31,20 +31,20 @@ A modern, feature-rich, and SEO-optimized blog template built with [Astro](https
 
 ## Quick Start
 
-1. **Clone the repository**
+1.  **Clone the repository**
 
     ```bash
     git clone https://github.com/DamonCote/astro-seo-blog
     cd astro-seo-blog
     ```
 
-2. **Install dependencies**
+2.  **Install dependencies**
 
     ```bash
     npm install
     ```
 
-3. **Set up environment variables**
+3.  **Set up environment variables**
 
     Create a `.env` file in the root directory:
 
@@ -55,9 +55,12 @@ A modern, feature-rich, and SEO-optimized blog template built with [Astro](https
 
     # Analytics (Optional)
     GA_MEASUREMENT_ID=G-XXXXXXXXXX
+
+    # Theme (Optional, default: "default")
+    THEME_NAME=default
     ```
 
-4. **Configure your site**
+4.  **Configure your site**
 
     Edit `public/data/settings/site-config.json` to customize your blog:
 
@@ -69,15 +72,15 @@ A modern, feature-rich, and SEO-optimized blog template built with [Astro](https
     }
     ```
 
-5. **Start development server**
+5.  **Start development server**
 
     ```bash
     npm run dev
     ```
 
-6. **Access your blog**
-    - **Frontend**: `http://localhost:4321`
-    - **Admin Dashboard**: `http://localhost:4321/admin` (use credentials from `.env`)
+6.  **Access your blog**
+    -   **Frontend**: `http://localhost:4321`
+    -   **Admin Dashboard**: `http://localhost:4321/admin` (use credentials from `.env`)
 
 ## Admin Dashboard Access
 

@@ -5,7 +5,6 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import markdoc from "@astrojs/markdoc";
 import node from "@astrojs/node";
-import path from "path";
 
 const isProduction = process.env.NODE_ENV !== "development";
 
@@ -27,9 +26,7 @@ const defaultConfig = {
         },
         resolve: {
             alias: {
-                fs: "node:fs",
                 "@": fileURLToPath(new URL("./src", import.meta.url)),
-                "~/": `${path.resolve(__dirname, "src")}/`,
             },
         },
     },
@@ -49,6 +46,7 @@ const productionConfig = {
         resolve: {
             alias: {
                 fs: "node:fs",
+                "@": fileURLToPath(new URL("./src", import.meta.url)),
             },
         },
     },

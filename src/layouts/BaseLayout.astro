@@ -1,10 +1,8 @@
 ---
-import { SITE_CONFIG, GA_MEASUREMENT_ID, GOOGLE_SEARCH_CONSOLE, THEME_NAME } from '../data/site-config';
-
+import { SITE_CONFIG, GA_MEASUREMENT_ID, GOOGLE_SEARCH_CONSOLE } from '../data/site-config';
 import SEOHead from '../components/seo/SEOHead.astro'; 
 import StructuredData from '../components/StructuredData.astro';
-import MainLayout from '../themes/'+THEME_NAME+'/layouts/Main.astro';
-import '../assets/styles/site.scss';
+import {MainLayout} from '../themes/init.ts';
 
 export interface Props {
   title?: string;
@@ -73,7 +71,7 @@ const {
     <link rel="icon" type="image/png" sizes="32x32" href="/Favicon.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/Favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Favicon.png" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="generator" content={Astro.generator} /> 
     {GOOGLE_SEARCH_CONSOLE && (
       <>
       <meta name="google-site-verification" content={GOOGLE_SEARCH_CONSOLE}/>
@@ -149,7 +147,9 @@ const {
       currentSlug={currentSlug}
       pageType={pageType}
       pageIdentifier={pageIdentifier}
-    />
+    >
+      <slot />
+    </MainLayout> 
     <!-- Dark mode script -->
     <script is:inline>
       const theme = (() => {
