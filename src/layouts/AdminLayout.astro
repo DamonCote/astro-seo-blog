@@ -1,10 +1,10 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-import { SITE_CONFIG } from '../data/site-config';
-import SEOHead from '../components/seo/SEOHead.astro';
-import ThemeToggle from '../components/common/ThemeToggle.astro';
-import { isValidSession } from '../lib/session';
-import '../assets/styles/admin.scss';
+import { SITE_CONFIG } from '@/data/site-config';
+import SEOHead from '@/components/seo/SEOHead.astro';
+import ThemeToggle from '@/components/common/ThemeToggle.astro';
+import { isValidSession } from '@/lib/session';
+import '@/assets/admin/styles/admin.scss';
 
 export interface Props {
   title?: string;
