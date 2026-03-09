@@ -1,0 +1,70 @@
+---
+import Header from "../common/Header.astro";
+import Footer from "../common/Footer.astro";
+import SearchModal from "../search/SearchModal.astro";
+
+export interface Props {
+    title?: string;
+    subject?: string;
+    description?: string;
+    ogImage?: string;
+    article?: {
+        publishedTime?: Date;
+        modifiedTime?: Date;
+        author?: string;
+        tags?: string[];
+    };
+    noindex?: boolean;
+    breadcrumb?: Array<{
+        name: string;
+        url: string;
+    }>;
+    faq?: Array<{
+        question: string;
+        answer: string;
+    }>;
+    reviews?: Array<{
+        itemName: string;
+        ratingValue: number;
+        bestRating: number;
+        worstRating: number;
+        reviewBody?: string;
+    }>;
+    hideSearch?: boolean;
+    hideThemeToggle?: boolean;
+    siteName?: string;
+    currentLanguage?: string;
+    availableLanguages?: string[];
+    currentSlug?: string;
+    pageType?: "blog-post" | "blog-index" | "blog-tag" | "blog-category";
+    pageIdentifier?: string;
+}
+
+const {
+    title,
+    hideSearch = false,
+    hideThemeToggle = false,
+    siteName,
+    currentLanguage = "",
+    availableLanguages,
+    currentSlug,
+} = Astro.props;
+---
+
+<Header
+    siteName={siteName}
+    hideSearch={hideSearch}
+    hideThemeToggle={hideThemeToggle}
+    currentLanguage={currentLanguage}
+    availableLanguages={availableLanguages}
+    currentSlug={currentSlug}
+/>
+<div class="min-h-screen flex flex-col">
+    <main class="flex-grow">
+        <slot />
+    </main>
+    <Footer siteName={siteName} />
+</div>
+
+<!-- Search Modal (only on pages with search) -->
+{!hideSearch && <SearchModal />}
