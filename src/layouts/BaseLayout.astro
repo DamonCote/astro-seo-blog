@@ -1,10 +1,9 @@
 ---
-import { SITE_CONFIG, GA_MEASUREMENT_ID, GOOGLE_SEARCH_CONSOLE } from '../data/site-config';
-import Header from '../components/common/Header.astro';
-import Footer from '../components/common/Footer.astro';
+import { SITE_CONFIG, GA_MEASUREMENT_ID, GOOGLE_SEARCH_CONSOLE, THEME_NAME } from '../data/site-config';
+
 import SEOHead from '../components/seo/SEOHead.astro'; 
 import StructuredData from '../components/StructuredData.astro';
-import SearchModal from '../components/search/SearchModal.astro';
+import MainLayout from '../themes/'+THEME_NAME+'/layouts/Main.astro';
 import '../assets/styles/site.scss';
 
 export interface Props {
@@ -132,6 +131,25 @@ const {
       url={Astro.url.toString()}
     />
 
+    <MainLayout 
+      title={title}
+      subject={subject}
+      description={description}
+      ogImage={ogImage}
+      article={article}
+      noindex={noindex}
+      breadcrumb={breadcrumb}
+      faq={faq}
+      reviews={reviews}
+      hideSearch={hideSearch}
+      hideThemeToggle={hideThemeToggle}
+      siteName={siteName}
+      currentLanguage={currentLanguage}
+      availableLanguages={availableLanguages}
+      currentSlug={currentSlug}
+      pageType={pageType}
+      pageIdentifier={pageIdentifier}
+    />
     <!-- Dark mode script -->
     <script is:inline>
       const theme = (() => {
@@ -150,19 +168,6 @@ const {
     </script>
   </head>
   <body>
-    <Header siteName={siteName} hideSearch={hideSearch} hideThemeToggle={hideThemeToggle} currentLanguage={currentLanguage} availableLanguages={availableLanguages} currentSlug={currentSlug} />
-
     
-
-    
-    <div class="min-h-screen flex flex-col">
-      <main class="flex-grow">
-        <slot />
-      </main>
-      <Footer siteName={siteName} />
-    </div>
-    
-    <!-- Search Modal (only on pages with search) -->
-    {!hideSearch && <SearchModal />}
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-import { SITE_CONFIG } from '../../data/site-config';
+import { SITE_CONFIG } from '@/data/site-config';
 import ThemeToggle from './ThemeToggle.astro';
 
 // Check if we're on a policy page
@@ -15,6 +15,9 @@ export interface Props {
   siteName?: string;
   hideSearch?: boolean;
   hideThemeToggle?: boolean;
+  currentLanguage?: string;
+  availableLanguages?: string[];
+  currentSlug?: string;
 }
 const {
   hideSearch = false,
