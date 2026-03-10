@@ -8,6 +8,33 @@ I would like to express my sincere gratitude to the original authors for sharing
 
 It has since grown into an **independent project**, rebuilt and customized according to my personal vision: a learning sandbox for SEO experimentation with future AI integration plans.
 
+## Theme
+
+The implementation of the multi-theme feature is somewhat lacking. If you have a better solution, please let me know. 
+
+### Default
+
+```
+THEME_NAME=default
+```
+
+<img width="1512" height="982" alt="image" src="https://github.com/user-attachments/assets/e494d26e-c915-4c7b-8c25-4ffbc22c2cbd" />
+
+### AI
+
+```
+THEME_NAME=ai
+```
+
+<img width="1512" height="982" alt="image" src="https://github.com/user-attachments/assets/c84f28fb-0908-4b29-bbc2-8427cf95bf14" />
+
+<img width="1512" height="982" alt="image" src="https://github.com/user-attachments/assets/1f57a997-2c22-44ba-a01d-eca1c1d881d2" />
+
+<img width="2573" height="9711" alt="image" src="https://github.com/user-attachments/assets/38df86b1-1e1a-482d-93b1-62069a8f0f90" />
+
+<img width="3024" height="2540" alt="image" src="https://github.com/user-attachments/assets/0ddc1de9-bde3-4a86-9198-07ddd71fefcc" />
+
+
 ## Built with Astro： SEO Blog Template
 
 A modern, feature-rich, and SEO-optimized blog template built with [Astro](https://astro.build). Perfect for developers, writers, and content creators who want a fast, scalable, and easily customizable blogging platform with a built-in CMS.
