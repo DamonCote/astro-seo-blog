@@ -1,0 +1,133 @@
+---
+import { SITE_CONFIG } from "@/data/site-config";
+import ThemeToggle from "./ThemeToggle.astro";
+
+// Check if we're on a policy page
+const isPolicyPage =
+    Astro.url.pathname.includes("terms-of-service") ||
+    Astro.url.pathname.includes("privacy-policy") ||
+    Astro.url.pathname.includes("refund-cancellation-policy") ||
+    Astro.url.pathname.includes("ai-content-usage-policy");
+
+// Check if we're on a blog page (including translated pages like /es/blog, /fr/blog, etc.)
+const isBlogPage =
+    Astro.url.pathname.includes("/blog") ||
+    Astro.url.pathname.startsWith("/page/");
+
+export interface Props {
+    siteName?: string;
+    hideSearch?: boolean;
+    hideThemeToggle?: boolean;
+    currentLanguage?: string;
+    availableLanguages?: string[];
+    currentSlug?: string;
+}
+const { hideSearch = false, hideThemeToggle = false } = Astro.props;
+---
+
+<!-- Main Header -->
+<header class="main-header main-header-one">
+    <!-- Header Lower -->
+    <div class="header-lower">
+        <div class="main-menu__wrapper">
+            <div
+                class="inner-container d-flex align-items-center justify-content-between"
+            >
+                <!-- Logo Box -->
+                <div class="main-header-one__logo-box">
+                    <a href="/"
+                        ><img
+                            src="/logo.png"
+                            alt=`${SITE_CONFIG.title} logo`
+                        /></a
+                    >
+                </div>
+
+                <div class="nav-outer">
+                    <!-- Main Menu -->
+                    <nav class="main-menu show navbar-expand-md">
+                        <div class="navbar-header">
+                            <button
+                                class="navbar-toggler"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                            >
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div
+                            class="navbar-collapse clearfix"
+                            id="navbarSupportedContent"
+                        >
+                            <ul class="navigation clearfix">
+                                <li><a href="/">Home</a></li>
+                                <li>
+                                    <a href="/blog">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="/about">About</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- Main Menu End-->
+                </div>
+
+                <!-- Outer Box -->
+                <div class="outer-box d-flex align-items-center">
+                    <!-- Mobile Navigation Toggler -->
+                    <div class="mobile-nav-toggler">
+                        <span class="icon-menu"></span>
+                    </div>
+                </div>
+                <!-- End Outer Box -->
+            </div>
+        </div>
+    </div>
+    <!-- End Header Lower -->
+
+    <!-- Mobile Menu  -->
+    <div class="mobile-menu">
+        <div class="menu-backdrop"></div>
+        <div class="close-btn">
+            <span class="icon far fa-times fa-fw"></span>
+        </div>
+        <nav class="menu-box">
+            <div class="nav-logo">
+                <a href="index.html"
+                    ><img src="/assets/ai/images/logo.png" alt="" title="" /></a
+                >
+            </div>
+            <!-- Search -->
+            <div class="search-box">
+                <form method="post" action="contact.html">
+                    <div class="form-group">
+                        <input
+                            type="search"
+                            name="search-field"
+                            value=""
+                            placeholder="SEARCH HERE"
+                            required
+                        />
+                        <button type="submit"
+                            ><span class="icon far fa-search fa-fw"
+                            ></span></button
+                        >
+                    </div>
+                </form>
+            </div>
+            <div class="menu-outer">
+                <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+            </div>
+        </nav>
+    </div>
+    <!-- End Mobile Menu -->
+</header>
+<!-- End Main Header -->

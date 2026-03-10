@@ -1,0 +1,80 @@
+/*** 
+
+====================================================================
+	Page Title
+====================================================================
+
+***/
+.page-title {
+    min-height: 500px;
+    padding: 150px 0 100px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+.breadcrumb__content {
+    text-align: center;
+}
+.breadcrumb__list {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        left: -16px;
+        top: 0;
+        height: 8px;
+        width: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--thm-white);
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        -ms-border-radius: 100px;
+        -o-border-radius: 100px;
+    }
+    &::after {
+        left: auto;
+        right: -16px;
+    }
+    .breadcrumb-item {
+        color: var(--thm-white);
+        text-transform: capitalize;
+        a {
+            font-size: 18px;
+        }
+    }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    float: left;
+    padding-right: 0;
+    color: rgba(255, 255, 255, 0.75);
+    content: "/";
+}
+.breadcrumb-item + .breadcrumb-item::after {
+    float: left;
+    padding-right: 0.5rem;
+    color: rgba(255, 255, 255, 0.75);
+    content: "/";
+}
+.breadcrumb-item + .breadcrumb-item {
+    padding-left: 0.5rem;
+}
+
+.breadcrumb__title {
+    font-weight: 400;
+    font-size: 65px;
+    margin-top: 24px;
+    letter-spacing: -0.07em;
+    color: var(--thm-white);
+}
+/* End */

@@ -1,68 +1,68 @@
 {
-    "title": "CoffeeStyle",
-    "subject": "A Coffee, An Attitude",
-    "admin_title": "Blog Admin",
-    "description": "we explore coffee culture, history, and the stories behind every bean. From ancient origins to modern brewing, we uncover the knowledge that deepens your connection to each cup. Whether you're discovering new rituals or savoring quiet mornings, this space is for curious minds and coffee hearts. Sip slowly, learn often, and live thoughtfully—one cup at a time.",
-    "url": "https://en.coffeestyle.info",
-    "author": "Damon Cote",
-    "authorEmail": "DamonCote7@gmail.com",
-    "authorWebsite": "https://damoncote.com",
-    "authorAvatar": "/Favicon.png",
-    "locale": "en",
-    "ogImage": "/og-image.jpg",
-    "navItems": [
-        {
-            "label": "Home",
-            "href": "/"
-        },
-        {
-            "label": "Blog",
-            "href": "/blog"
-        },
-        {
-            "label": "About",
-            "href": "/about"
-        }
-    ],
-    "postsPerPage": 10,
-    "recentPostsCount": 5,
-    "social": {
-        "twitter": "@DamonCote7",
-        "github": "DamonCote",
-        "linkedin": "",
-        "instagram": "",
-        "youtube": "",
-        "discord": ""
+  "title": "EvoArt.ai",
+  "subject": "Explore the infinite possibilities of creativity in an AI-driven hyper-connected world.",
+  "admin_title": "Blog Admin",
+  "description": "EvoArt.ai is a comprehensive platform designed for developers,\n                engineers, and tech enthusiasts who are passionate about AI,\n                front-end and back-end development, and modern web technologies.\n                Whether you're building the next big thing or honing your\n                skills, EvoArt.ai provides the tools, templates, and insights\n                you need to succeed.",
+  "url": "https://en.coffeestyle.info",
+  "author": "Damon Cote",
+  "authorEmail": "DamonCote7@gmail.com",
+  "authorWebsite": "https://damoncote.com",
+  "authorAvatar": "/Favicon.png",
+  "locale": "en",
+  "ogImage": "/og-image.jpg",
+  "navItems": [
+    {
+      "label": "Home",
+      "href": "/"
     },
-    "features": {
-        "darkMode": true,
-        "search": true,
-        "comments": true,
-        "rss": true
+    {
+      "label": "Blog",
+      "href": "/blog"
     },
-    "gaId": "",
-    "googleSearchConsole": "",
-    "blogCTA": {
-        "enabled": true,
-        "title": "Subscribe to Newsletter",
-        "description": "Get the latest posts delivered right to your inbox.",
-        "buttonText": "Subscribe",
-        "buttonUrl": "#",
-        "secondaryText": "Join our community",
-        "showStats": false,
-        "stats": [
-            {
-                "number": "1,000+",
-                "label": "Waitlist Members"
-            },
-            {
-                "number": "First 500",
-                "label": "Get Priority"
-            },
-            {
-                "number": "Early 2025",
-                "label": "Launch Date"
-            }
-        ]
+    {
+      "label": "About",
+      "href": "/about"
     }
+  ],
+  "postsPerPage": 10,
+  "recentPostsCount": 5,
+  "social": {
+    "twitter": "@DamonCote7",
+    "github": "DamonCote",
+    "linkedin": "",
+    "instagram": "",
+    "youtube": "",
+    "discord": ""
+  },
+  "features": {
+    "darkMode": true,
+    "search": true,
+    "comments": true,
+    "rss": true
+  },
+  "gaId": "",
+  "googleSearchConsole": "",
+  "blogCTA": {
+    "enabled": true,
+    "title": "Subscribe to Newsletter",
+    "description": "Get the latest posts delivered right to your inbox.",
+    "buttonText": "Subscribe",
+    "buttonUrl": "#",
+    "secondaryText": "Join our community",
+    "showStats": false,
+    "stats": [
+      {
+        "number": "1,000+",
+        "label": "Waitlist Members"
+      },
+      {
+        "number": "First 500",
+        "label": "Get Priority"
+      },
+      {
+        "number": "Early 2025",
+        "label": "Launch Date"
+      }
+    ]
+  }
 }

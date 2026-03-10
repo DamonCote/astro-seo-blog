@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_CONFIG } from '../data/site-config';
+import { ThemeAbout } from '../themes/init';
 ---
 
 <BaseLayout
@@ -11,38 +11,7 @@ import { SITE_CONFIG } from '../data/site-config';
     { name: 'About', url: '/about' }
   ]}
 >
-  <div class="container py-24 lg:py-32">
-    <div class="max-w-5xl mx-auto">
-      <!-- Header -->
-      <div class="mb-20">
-        <h1 class="text-4xl lg:text-5xl font-display font-bold mb-6 leading-tight">
-          ABOUT <span class="text-text-muted">CoffeeStyle</span>
-        </h1>
-        <p class="text-sm lg:text-base text-text-muted max-w-3xl">
-         {SITE_CONFIG.description}
-        </p>
-      </div>
-
-      <!-- Mission Section -->
-      <div class="mb-24 pb-16 border-b border-border">
-        <h2 class="text-2xl lg:text-3xl font-display font-bold mb-8">The Origin of Coffee Culture</h2>
-        <p class="text-sm lg:text-base text-text-muted mb-6 leading-relaxed">
-          The world's first coffeehouse, dating back nearly 300 years, is still in operation!
-        </p>
-        <p class="text-sm lg:text-base text-text-muted  mb-6 leading-relaxed">
-         Coffee culture originated in Turkey. In 1530, when Istanbul was still known as Constantinople, the world's first coffeehouse opened in the city. It quickly became a hub for social interaction and artistic expression at the time.
-        </p>
-         <p class="text-sm lg:text-base text-text-muted leading-relaxed">
-         Back in ancient Istanbul, streets were lined with all kinds of coffeehouses. People would gather in groups, sit on the floor, sip coffee, smoke, and socialize. This was the earliest prototype of the coffeehouse culture.
-        </p>
-      </div>
-
-
-
-      <!-- Open Source -->
-      
-    </div>
-  </div>
+  <ThemeAbout />
 
   <!-- Organization Schema -->
   <script type="application/ld+json">
