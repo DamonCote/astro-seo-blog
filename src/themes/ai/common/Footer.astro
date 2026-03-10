@@ -1,0 +1,30 @@
+---
+import { SITE_CONFIG } from "@/data/site-config";
+
+export interface Props {
+    siteName?: string;
+}
+
+const { siteName = SITE_CONFIG.title } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<!-- Main Footer Start -->
+<footer class="main-footer">
+    <div class="main-footer__shape-1 img-bounce"></div>
+    <div class="main-footer__bottom">
+        <div class="container">
+            <div class="main-footer__bottom-inner">
+                <p class="main-footer__bottom-text">
+                    © {currentYear}
+                    {SITE_CONFIG.title}. Built by <a
+                        href="https://apatero.com"
+                        target="_blank"
+                        class="hover:text-text transition-colors">Apatero</a
+                    >. Open Source • MIT License
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Main Footer End -->

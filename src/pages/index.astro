@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_CONFIG } from '../data/site-config';
-import BlogSection from '../components/landing/BlogSection.astro';
+import { ThemeHome } from '../themes/init';
 ---
 
 <BaseLayout
@@ -11,7 +11,7 @@ import BlogSection from '../components/landing/BlogSection.astro';
   hideThemeToggle={false}
   siteName={SITE_CONFIG.title}
 > 
-  <BlogSection />
+  <ThemeHome />
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json" is:inline>
     {

@@ -1,0 +1,138 @@
+---
+
+---
+
+<!-- Faq Start -->
+<section class="faq">
+    <div class="container">
+        <div class="section-title text-center">
+            <div class="section-title__tagline-box">
+                <span class="section-title__tagline"
+                    >Frequently Asked Questions</span
+                >
+            </div>
+            <h2 class="section-title__title">Common questions answered</h2>
+        </div>
+        <div class="faq__inner">
+            <div class="accrodion-grp faq-accrodion">
+                <div class="accrodion">
+                    <div class="accrodion-title">
+                        <h4>IS THIS TEMPLATE REALLY FREE?</h4>
+                    </div>
+                    <div class="accrodion-content">
+                        <div class="inner">
+                            <p>
+                                Yes! This template is completely free and open
+                                source under the MIT License. You can use it for
+                                personal projects, commercial work, or modify it
+                                as you see fit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accrodion active">
+                    <div class="accrodion-title">
+                        <h4>DO I NEED TO KNOW ASTRO?</h4>
+                    </div>
+                    <div class="accrodion-content">
+                        <div class="inner">
+                            <p>
+                                Basic knowledge helps, but you can get started
+                                immediately by just editing the configuration
+                                file and writing blog posts in Markdown/MDX. The
+                                documentation guides you through everything.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accrodion">
+                    <div class="accrodion-title">
+                        <h4>CAN I CUSTOMIZE THE DESIGN?</h4>
+                    </div>
+                    <div class="accrodion-content">
+                        <div class="inner">
+                            <p>
+                                Absolutely! The template uses Tailwind CSS,
+                                making it easy to customize colors, fonts,
+                                spacing, and layout. The code is clean and
+                                well-organized for easy modifications.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accrodion">
+                    <div class="accrodion-title">
+                        <h4>WHERE CAN I DEPLOY THIS?</h4>
+                    </div>
+                    <div class="accrodion-content">
+                        <div class="inner">
+                            <p>
+                                Deploy anywhere that supports Node.js! Popular
+                                options include Vercel, Netlify, Railway,
+                                DigitalOcean, or any VPS. The template includes
+                                deployment examples in the documentation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accrodion">
+                    <div class="accrodion-title">
+                        <h4>MULTIPLE LANGUAGES?</h4>
+                    </div>
+                    <div class="accrodion-content">
+                        <div class="inner">
+                            <p>
+                                Yes! The template is internationalization (i18n)
+                                ready. You can easily add multiple language
+                                versions of your content and the interface
+                                automatically adapts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accrodion">
+                    <div class="accrodion-title">
+                        <h4>HOW DO I GET SUPPORT?</h4>
+                    </div>
+                    <div class="accrodion-content">
+                        <div class="inner">
+                            <p>
+                                Check the documentation on GitHub, open an issue
+                                if you find bugs, or start a discussion for
+                                questions. The community is here to help!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Faq End -->
+<script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script is:inline>
+    const accrodionGrp = $(".accrodion-grp");
+    accrodionGrp.each(function () {
+        var Self = $(this);
+        var accordion = Self.find(".accrodion");
+        Self.find(".accrodion .accrodion-content").hide();
+        Self.find(".accrodion.active").find(".accrodion-content").show();
+        accordion.each(function () {
+            $(this)
+                .find(".accrodion-title")
+                .on("click", function () {
+                    if ($(this).parent().hasClass("active") === false) {
+                        $(".accrodion-grp")
+                            .find(".accrodion")
+                            .removeClass("active");
+                        $(".accrodion-grp")
+                            .find(".accrodion")
+                            .find(".accrodion-content")
+                            .slideUp();
+                        $(this).parent().addClass("active");
+                        $(this).parent().find(".accrodion-content").slideDown();
+                    }
+                });
+        });
+    });
+</script>

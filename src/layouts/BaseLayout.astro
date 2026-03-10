@@ -61,6 +61,10 @@ const {
   pageIdentifier,
 } = Astro.props;
 
+const env = import.meta.env;
+
+const THEME_NAME = env.THEME_NAME || "default";
+const bodyClass =  `theme-${THEME_NAME}-body`;
 ---
 
 <!DOCTYPE html>
@@ -71,7 +75,8 @@ const {
     <link rel="icon" type="image/png" sizes="32x32" href="/Favicon.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/Favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Favicon.png" />
-    <meta name="generator" content={Astro.generator} /> 
+
+
     {GOOGLE_SEARCH_CONSOLE && (
       <>
       <meta name="google-site-verification" content={GOOGLE_SEARCH_CONSOLE}/>
@@ -129,6 +134,10 @@ const {
       url={Astro.url.toString()}
     />
 
+    
+  </head>
+  <body class={bodyClass}>
+
     <MainLayout 
       title={title}
       subject={subject}
@@ -166,8 +175,6 @@ const {
         document.documentElement.classList.add('dark');
       }
     </script>
-  </head>
-  <body>
     
   </body>
 </html>

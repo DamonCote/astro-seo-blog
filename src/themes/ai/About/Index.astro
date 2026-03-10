@@ -1,0 +1,58 @@
+---
+import { SITE_CONFIG } from "@/data/site-config";
+---
+
+<section
+    class="page-title"
+    data-background="/assets/ai/images/pagetitle-bg.png"
+    style='background-image: url("/assets/ai/images/pagetitle-bg.png");'
+>
+    <div class="container">
+        <div class="breadcrumb__content">
+            <ul class="breadcrumb__list clearfix list-unstyled">
+                <li class="breadcrumb-item"><a href="/">home</a></li>
+                <li class="breadcrumb-item">About</li>
+            </ul>
+            <h2 class="breadcrumb__title">About</h2>
+        </div>
+    </div>
+</section>
+<section class="about">
+    <div class="container">
+        <div class="container py-12 lg:py-16">
+            <div class="max-w-5xl mx-auto">
+                <div class="about-box">
+                    <h2 class="about-title">About {SITE_CONFIG.title}</h2>
+                    <div class="about-body">
+                        <p>
+                            {SITE_CONFIG.description}
+                        </p>
+                    </div>
+                </div>
+                <div class="about-box">
+                    <h2 class="about-title">The Origin of Coffee Culture</h2>
+                    <div class="about-body">
+                        <p>
+                            The world's first coffeehouse, dating back nearly
+                            300 years, is still in operation!
+                        </p>
+                        <p>
+                            Coffee culture originated in Turkey. In 1530, when
+                            Istanbul was still known as Constantinople, the
+                            world's first coffeehouse opened in the city. It
+                            quickly became a hub for social interaction and
+                            artistic expression at the time.
+                        </p>
+                        <p>
+                            Back in ancient Istanbul, streets were lined with
+                            all kinds of coffeehouses. People would gather in
+                            groups, sit on the floor, sip coffee, smoke, and
+                            socialize. This was the earliest prototype of the
+                            coffeehouse culture.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
