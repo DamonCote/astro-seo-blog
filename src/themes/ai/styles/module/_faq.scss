@@ -54,11 +54,13 @@
                     margin: 0;
                     font-size: 16px;
                     color: var(--thm-gray);
-                    font-weight: 500;
+                    font-weight: 600;
                     line-height: 30px;
                     position: relative;
                     -webkit-transition: all 500ms ease;
+                    letter-spacing: -0.02em;
                     transition: all 500ms ease;
+                    text-transform: capitalize;
                     &::before {
                         content: "\e901";
                         font-family: "icomoon" !important;

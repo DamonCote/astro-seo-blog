@@ -6,9 +6,11 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 :root {
     --thm-font: "Sora", sans-serif;
-    --thm-font-two: "Inter", sans-serif;
+    --thm-font-two: "DM Sans", sans-serif;
+    --thm-font-heading: "SportingGrotesque", sans-serif;
     --thm-gray: #a1aac9;
     --thm-gray-rgb: 161, 170, 201;
     --thm-white: #ffffff;
@@ -74,10 +76,50 @@ body {
     h5,
     h6 {
         color: var(--thm-white);
+        font-family: var(--thm-font-heading);
+        letter-spacing: -0.05em;
     }
-
+    a,
+    p,
+    span,
+    .font-display,
+    li {
+        font-family: var(--thm-font);
+        letter-spacing: normal;
+    }
     .min-h-screen {
         min-height: 100vh;
+    }
+
+    .group-hover:hover .group-hover\:text-text {
+        color: #fff !important;
+    }
+
+    table {
+        td {
+            color: var(--thm-gray);
+            font-size: 14px;
+        }
+        th {
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+        }
+    }
+    .prose-custom
+        :where(thead):not(
+            :where([class~="not-prose"], [class~="not-prose"] *)
+        ) {
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+    .prose-custom
+        :where(tbody tr):not(
+            :where([class~="not-prose"], [class~="not-prose"] *)
+        ) {
+        td {
+            color: var(--thm-gray);
+        }
+        border-color: rgba(255, 255, 255, 0.2);
     }
 
     .page-wrapper {
@@ -94,26 +136,40 @@ body {
         .text-text-muted {
             color: var(--thm-gray);
         }
+        .toc-link.active .toc-bullet {
+            background-color: #fff !important;
+        }
         .prose-custom {
             p {
                 color: var(--thm-gray);
             }
+            li {
+                color: var(--thm-gray);
+                position: relative;
+                font-size: 14px;
+            }
+            ol {
+                li {
+                    list-style: decimal;
+                    &::marker {
+                        color: #fff;
+                    }
+                }
+            }
+
             ul {
                 li {
-                    color: var(--thm-gray);
-                    position: relative;
-
                     &::before {
                         content: "";
                         position: absolute;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        max-width: 4px;
+                        max-width: 8px;
                         width: 100%;
-                        height: 5px;
-                        background-color: #a1aac9;
-                        left: -1.3rem;
+                        height: 4px;
+                        background-color: #fff;
+                        left: -1.4rem;
                         top: 11px;
                     }
                 }

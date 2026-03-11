@@ -111,11 +111,13 @@
     display: block;
     text-align: center;
     line-height: 30px;
-    font-weight: 500;
     padding: 30px 0px;
-    color: var(--thm-gray);
+    color: var(--thm-white);
     font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     transition: all 500ms ease;
+    font-family: var(--thm-font);
     -moz-transition: all 500ms ease;
     -webkit-transition: all 500ms ease;
     -ms-transition: all 500ms ease;
