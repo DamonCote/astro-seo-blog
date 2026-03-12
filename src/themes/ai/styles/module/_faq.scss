@@ -55,7 +55,7 @@
                     font-size: 16px;
                     color: var(--thm-gray);
                     font-weight: 600;
-                    line-height: 30px;
+                    line-height: 1.4;
                     position: relative;
                     -webkit-transition: all 500ms ease;
                     letter-spacing: -0.02em;
@@ -69,7 +69,7 @@
                         position: absolute;
                         top: 50%;
                         right: 0;
-                        line-height: 15px;
+                        line-height: 1;
                         border-radius: 50%;
                         display: flex;
                         justify-content: center;
@@ -89,10 +89,47 @@
                 padding-bottom: 27px;
                 padding-left: 30px;
                 padding-right: 30px;
+                line-height: 1.6;
                 p {
-                    margin: 0;
+                    margin: 0 0px 10px 0px;
+
                     a {
                         color: var(--thm-gradient-color2);
+                    }
+                }
+                li {
+                    color: var(--thm-gray);
+                    position: relative;
+                    font-size: 14px;
+                }
+                ul,
+                ol {
+                    padding-left: 1.5rem;
+                }
+                ol {
+                    li {
+                        list-style: decimal;
+                        &::marker {
+                            color: #fff;
+                        }
+                    }
+                }
+
+                ul {
+                    li {
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            max-width: 8px;
+                            width: 100%;
+                            height: 4px;
+                            background-color: #fff;
+                            left: -1.4rem;
+                            top: 9px;
+                        }
                     }
                 }
             }

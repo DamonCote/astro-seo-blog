@@ -25,7 +25,9 @@
     background-color: transparent;
     width: 100%;
     z-index: 999;
-    background-color: #00003b;
+
+    background-color: rgba(#00003b, 0.6);
+    backdrop-filter: blur(10px);
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.05);
 }
 

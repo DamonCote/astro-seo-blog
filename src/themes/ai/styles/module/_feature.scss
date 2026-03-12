@@ -21,9 +21,12 @@
     position: relative;
     display: block;
     text-align: center;
+    padding: 0px 10px;
     color: var(--thm-white);
-    line-height: 58px;
+    line-height: 1.2;
     margin-bottom: 32px;
+    font-size: 32px;
+    text-transform: capitalize;
 }
 
 .feature-section__title span {
