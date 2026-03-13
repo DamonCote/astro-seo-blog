@@ -44,3 +44,39 @@ import { SITE_CONFIG } from "@/data/site-config";
         <!-- Open Source -->
     </div>
 </div>
+
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+       "@type": "WebSite",
+       "name": SITE_CONFIG.title,
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "description": SITE_CONFIG.description,
+      "url": SITE_CONFIG.url,
+      "author": {
+        "@type": "Person",
+        "name": "CoffeeStyle",
+        "url": "https://www.coffeestyle.info"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free and open source under MIT License"
+      },
+      "featureList": [
+        "Coffee Culture Blog",
+        "CoffeeStyle",
+        "Coffee Reviews",
+        "Coffee Brewing Guides",
+        "Coffee Bean Origins",
+        "Coffee Equipment",
+        "Coffee Recipes",
+        "Coffee Trends",
+        "Coffee Lifestyle"
+      ]
+    }
+  </script>

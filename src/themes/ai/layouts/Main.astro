@@ -38,26 +38,30 @@ export interface Props {
     currentSlug?: string;
     pageType?: "blog-post" | "blog-index" | "blog-tag" | "blog-category";
     pageIdentifier?: string;
+    currentNav?: string; // New prop to indicate the current active navigation item
 }
 
 const {
-    title,
+    title = "",
     hideSearch = false,
     hideThemeToggle = false,
     siteName,
     currentLanguage = "",
     availableLanguages,
     currentSlug,
+    currentNav = "",
 } = Astro.props;
 ---
 
 <Header
+    title={title}
     siteName={siteName}
     hideSearch={hideSearch}
     hideThemeToggle={hideThemeToggle}
     currentLanguage={currentLanguage}
     availableLanguages={availableLanguages}
     currentSlug={currentSlug}
+    currentNav={currentNav}
 />
 <div class="page-wrapper min-h-screen flex flex-col">
     <main class="flex-grow">

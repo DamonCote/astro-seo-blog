@@ -1,26 +1,16 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { ThemeAbout } from '../themes/init';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ThemeAbout } from "../themes/init";
 ---
 
 <BaseLayout
-  title="About"
-  description={`Learn about  `}
-  breadcrumb={[
-    { name: 'Home', url: '/' },
-    { name: 'About', url: '/about' }
-  ]}
+    title="About"
+    description={`Learn about  `}
+    breadcrumb={[
+        { name: "Home", url: "/" },
+        { name: "About", url: "/about" },
+    ]}
+    currentNav="About"
 >
-  <ThemeAbout />
-
-  <!-- Organization Schema -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-       "name": SITE_CONFIG.title,
-       "description": SITE_CONFIG.description,
-      "url": SITE_CONFIG.url
-    }
-  </script>
+    <ThemeAbout />
 </BaseLayout>

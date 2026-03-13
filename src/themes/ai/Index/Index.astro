@@ -2,8 +2,48 @@
 import BlogSection from "../components/landing/BlogSection.astro";
 import FeatureSection from "../components/landing/FeatureSection.astro";
 import FaqsSection from "../components/landing/FaqsSection.astro";
+import { SITE_CONFIG } from "@/data/site-config";
+
+const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_CONFIG.title,
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Web",
+    description: SITE_CONFIG.description,
+    url: SITE_CONFIG.url,
+    author: {
+        "@type": "Person",
+        name: SITE_CONFIG.author,
+        url: SITE_CONFIG.authorWebsite,
+    },
+    offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+        description: "Free and open source under MIT License",
+    },
+    featureList: [
+        "AI-Powered Content Generation",
+        "SEO Optimization Tools",
+        "Automated Meta Tag Creation",
+        "Structured Data Generation",
+        "Content Analysis and Suggestions",
+        "Keyword Research Assistance",
+        "Competitor Analysis Tools",
+        "Performance Tracking and Analytics",
+        "Integration with CMS Platforms",
+    ],
+};
 ---
 
 <FeatureSection />
 <BlogSection />
 <FaqsSection />
+
+<!-- Schema.org Structured Data -->
+<script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(homeStructuredData)}
+/>
