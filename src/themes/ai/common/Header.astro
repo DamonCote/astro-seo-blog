@@ -15,14 +15,27 @@ const isBlogPage =
     Astro.url.pathname.startsWith("/page/");
 
 export interface Props {
+    title: string;
     siteName?: string;
     hideSearch?: boolean;
     hideThemeToggle?: boolean;
     currentLanguage?: string;
     availableLanguages?: string[];
     currentSlug?: string;
+    currentNav?: string;
 }
-const { hideSearch = false, hideThemeToggle = false } = Astro.props;
+const {
+    hideSearch = false,
+    hideThemeToggle = false,
+    currentNav = "",
+    title = "",
+} = Astro.props;
+
+const arrayNavs = [
+    { name: "Home", url: "/" },
+    { name: "Blog", url: "/blog" },
+    { name: "About", url: "/about" },
+];
 ---
 
 <!-- Main Header -->
@@ -67,13 +80,20 @@ const { hideSearch = false, hideThemeToggle = false } = Astro.props;
                             id="navbarSupportedContent"
                         >
                             <ul class="navigation clearfix">
-                                <li><a href="/">Home</a></li>
-                                <li>
-                                    <a href="/blog">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="/about">About</a>
-                                </li>
+                                {
+                                    arrayNavs.map((nav) => (
+                                        <li
+                                            class={` ${nav.name === currentNav ? "current" : ""}`}
+                                        >
+                                            <a
+                                                href={nav.url}
+                                                class="transition-colors"
+                                            >
+                                                {nav.name}
+                                            </a>
+                                        </li>
+                                    ))
+                                }
                             </ul>
                         </div>
                     </nav>

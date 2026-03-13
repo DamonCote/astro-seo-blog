@@ -39,6 +39,8 @@ export interface Props {
   currentSlug?: string;
   pageType?: 'blog-post' | 'blog-index' | 'blog-tag' | 'blog-category';
   pageIdentifier?: string;
+  currentNav?: string; // New prop to indicate the current active navigation item
+  url?: string;
 }
 
 const {
@@ -46,6 +48,7 @@ const {
   subject = SITE_CONFIG.subject,
   description = SITE_CONFIG.description,
   ogImage = SITE_CONFIG.ogImage,
+  url = SITE_CONFIG.url,
   article,
   noindex = false,
   breadcrumb,
@@ -59,6 +62,7 @@ const {
   currentSlug,
   pageType,
   pageIdentifier,
+  currentNav = '',
 } = Astro.props;
 
 const env = import.meta.env;
@@ -131,7 +135,7 @@ const bodyClass =  `theme-${THEME_NAME}-body`;
       datePublished={article?.publishedTime?.toISOString()}
       dateModified={article?.modifiedTime?.toISOString()}
       image={ogImage}
-      url={Astro.url.toString()}
+      url={url}
     />
 
     
@@ -156,6 +160,8 @@ const bodyClass =  `theme-${THEME_NAME}-body`;
       currentSlug={currentSlug}
       pageType={pageType}
       pageIdentifier={pageIdentifier}
+      currentNav={currentNav}
+
     >
       <slot />
     </MainLayout> 

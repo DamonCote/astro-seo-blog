@@ -12,17 +12,28 @@ const isPolicyPage = Astro.url.pathname.includes('terms-of-service') ||
 const isBlogPage = Astro.url.pathname.includes('/blog') || Astro.url.pathname.startsWith('/page/');
 
 export interface Props {
+  title: string;
   siteName?: string;
   hideSearch?: boolean;
   hideThemeToggle?: boolean;
   currentLanguage?: string;
   availableLanguages?: string[];
   currentSlug?: string;
+  currentNav?: string;
 }
 const {
   hideSearch = false,
   hideThemeToggle = false,
+  currentNav = "",
+
 } = Astro.props;
+
+const arrayNavs = [
+    { name: "Home", url: "/" },
+    { name: "Blog", url: "/blog" },
+    { name: "About", url: "/about" },
+];
+
 ---
 
 <header class="sticky top-0 z-50 w-full border-b header-bg backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -30,21 +41,19 @@ const {
     <!-- Logo -->
     <a href="/" class="flex items-center ">
       <span class="logo">
-        <img src="/logo.png" alt={`${SITE_CONFIG.title} Logo`}  />
+        <img src="/logo.jpg" alt={`${SITE_CONFIG.title} Logo`}  />
       </span>
     </a>
     <div class="flex space-between items-center gap-6">
       <ul class="navbar">
-        <li>
-          <a href="/" class="text-sm text-text-muted hover:text-text transition-colors">Home</a>
-        </li>
-        <li>
-          <a href="/blog" class="text-sm text-text-muted hover:text-text transition-colors">Blog</a>
-        
-        </li>
-        <li>
-          <a href="/about" class="text-sm text-text-muted hover:text-text transition-colors">About</a>
-        </li>
+        {arrayNavs.map((nav) => (
+          <li
+            class={` ${nav.name === currentNav ? "current" : ""}`}
+          >
+            <a href={nav.url} class="text-sm text-text-muted hover:text-text transition-colors">{nav.name}</a>
+          </li>
+        ))} 
+         
       </ul>
       </div>
     <div class="flex items-center gap-1">

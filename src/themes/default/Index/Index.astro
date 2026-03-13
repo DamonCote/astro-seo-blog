@@ -1,5 +1,45 @@
 ---
 import BlogSection from "../components/landing/BlogSection.astro";
+import { SITE_CONFIG } from "@/data/site-config";
+
+const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_CONFIG.title,
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Web",
+    description: SITE_CONFIG.description,
+    url: SITE_CONFIG.url,
+    author: {
+        "@type": "Person",
+        name: "CoffeeStyle",
+        url: "https://www.coffeestyle.info",
+    },
+    offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+        description: "Free and open source under MIT License",
+    },
+    featureList: [
+        "Coffee Culture Blog",
+        "CoffeeStyle",
+        "Coffee Reviews",
+        "Coffee Brewing Guides",
+        "Coffee Bean Origins",
+        "Coffee Equipment",
+        "Coffee Recipes",
+        "Coffee Trends",
+        "Coffee Lifestyle",
+    ],
+};
 ---
 
 <BlogSection />
+
+<!-- Schema.org Structured Data -->
+<script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(homeStructuredData)}
+/>
