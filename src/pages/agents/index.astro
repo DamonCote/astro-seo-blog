@@ -1,0 +1,263 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AgentCard from "../../components/agent/AgentCard.astro";
+import { sortPostsByDate, formatDate } from "../../lib/utils";
+import { SITE_CONFIG } from "../../data/site-config";
+import { getPublishedAIAgents } from "../../lib/agents";
+import { normalizeTagName } from "../../lib/utils";
+import { DEFAULT_LANGUAGE } from "../../config/languages";
+
+// Get all non-draft agents from both locations
+const allAgents = await getPublishedAIAgents();
+
+// Sort agents: featured first, then by date
+const sortedAgents = sortPostsByDate(allAgents).sort((a, b) => {
+    // Featured agents come first
+    if (a.data.featured && !b.data.featured) return -1;
+    if (!a.data.featured && b.data.featured) return 1;
+    // Then sort by date (already sorted by sortPostsByDate)
+    return 0;
+});
+
+// Pagination settings
+const POSTS_PER_PAGE = 15;
+const currentPage = 1;
+const totalPages = Math.ceil(sortedAgents.length / POSTS_PER_PAGE);
+const paginatedAgents = sortedAgents.slice(0, POSTS_PER_PAGE);
+
+const featuredAgents = sortedAgents.filter((agent) => agent.data.featured);
+const latestAgent = sortedAgents.length > 0 ? sortedAgents[0] : null;
+const recentAgents = sortedAgents.slice(1, 7);
+
+// Stats
+const totalAgents = allAgents.length;
+---
+
+<BaseLayout
+    title="AI Agents"
+    siteName={SITE_CONFIG.title}
+    currentLanguage={DEFAULT_LANGUAGE}
+    pageType="blog-index"
+    currentNav="AI Agents"
+>
+    <div class="min-h-screen">
+        <!-- Compact Blog Header -->
+        <section class="py-12">
+            <div class="container">
+                <div class="max-w-4xl">
+                    <h1
+                        class="text-4xl md:text-5xl font-display font-bold mb-3"
+                    >
+                        AI Agents
+                    </h1>
+                    <p class="text-sm text-text-muted">
+                        Explore our collection of AI agents, designed to help
+                        you automate tasks, generate content, and enhance your
+                        productivity. Each agent is crafted with care and
+                        optimized for performance, making it easier than ever to
+                        leverage the power of AI in your projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Blog Layout -->
+        <section class="py-12">
+            <div class="container">
+                <div class="grid lg:grid-cols-[1fr,320px] gap-12">
+                    <!-- Left Column - Blog Posts -->
+                    <div>
+                        <!-- All Posts List -->
+                        {
+                            paginatedAgents.length > 0 ? (
+                                <div class="space-y-8">
+                                    {paginatedAgents.map((agent) => (
+                                        <article class="border-b pb-8">
+                                            <a
+                                                href={`/agents/${agent.slug}`}
+                                                class="block group"
+                                            >
+                                                <div class="grid md:grid-cols-[160px,1fr] gap-4">
+                                                    {agent.data.heroImage && (
+                                                        <div class="overflow-hidden rounded-lg aspect-[16/9] md:aspect-[4/3] bg-surface">
+                                                            <img
+                                                                src={
+                                                                    agent.data
+                                                                        .heroImage
+                                                                }
+                                                                alt={
+                                                                    agent.data
+                                                                        .heroImageAlt ||
+                                                                    `${agent.data.title} - ${agent.data.category} tutorial and guide`
+                                                                }
+                                                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                                loading="lazy"
+                                                            />
+                                                        </div>
+                                                    )}
+
+                                                    <div
+                                                        class={
+                                                            agent.data.heroImage
+                                                                ? ""
+                                                                : "md:col-span-2"
+                                                        }
+                                                    >
+                                                        <h2 class="text-xl font-semibold mb-2 group-hover:opacity-70 transition-opacity">
+                                                            {agent.data.title}
+                                                        </h2>
+
+                                                        <p class="text-sm text-text-muted mb-3 line-clamp-2">
+                                                            {
+                                                                agent.data
+                                                                    .description
+                                                            }
+                                                        </p>
+
+                                                        <div class="flex items-center justify-between mt-2">
+                                                            <span class="text-xs text-text-muted group-hover:text-text transition-colors">
+                                                                Read more →
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </article>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div class="border border-border rounded-lg p-8 text-center">
+                                    <p class="text-text-muted mb-4">
+                                        No agents yet.
+                                    </p>
+                                    <p class="text-sm text-text-muted">
+                                        Check back soon for content!
+                                    </p>
+                                </div>
+                            )
+                        }
+
+                        <!-- Pagination -->
+                        {
+                            totalPages > 1 && (
+                                <div class="mt-12 flex items-center justify-center gap-2">
+                                    <button
+                                        disabled
+                                        class="px-4 py-2 border border-border rounded-lg text-text-muted cursor-not-allowed opacity-50"
+                                    >
+                                        ← Previous
+                                    </button>
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="px-4 py-2 bg-text text-background rounded-lg">
+                                            1
+                                        </span>
+                                        {Array.from(
+                                            {
+                                                length: Math.min(
+                                                    totalPages - 1,
+                                                    4,
+                                                ),
+                                            },
+                                            (_, i) => i + 2,
+                                        ).map((page) => (
+                                            <a
+                                                href={`/page/${page}`}
+                                                class="px-4 py-2 border border-border rounded-lg hover:bg-surface transition-colors"
+                                            >
+                                                {page}
+                                            </a>
+                                        ))}
+                                        {totalPages > 5 && (
+                                            <>
+                                                <span class="px-2">...</span>
+                                                <a
+                                                    href={`/page/${totalPages}`}
+                                                    class="px-4 py-2 border border-border rounded-lg hover:bg-surface transition-colors"
+                                                >
+                                                    {totalPages}
+                                                </a>
+                                            </>
+                                        )}
+                                    </div>
+
+                                    {totalPages > 1 && (
+                                        <a
+                                            href="/page/2"
+                                            class="px-4 py-2 border border-border rounded-lg hover:bg-surface transition-colors"
+                                        >
+                                            Next →
+                                        </a>
+                                    )}
+                                </div>
+                            )
+                        }
+                    </div>
+
+                    <!-- Right Column - Sidebar -->
+                    <aside class="space-y-8 lg:sticky lg:top-8 lg:h-fit">
+                        <!-- Stats -->
+                        <div class="border-t pt-8">
+                            <h3 class="text-sm font-bold uppercase mb-4">
+                                Stats
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-xs text-text-muted"
+                                        >Total AI Agents</span
+                                    >
+                                    <span class="text-xs font-medium"
+                                        >{totalAgents}</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Agents -->
+                        {
+                            featuredAgents.length > 0 && (
+                                <div class="border-t pt-8">
+                                    <h3 class="text-sm font-bold uppercase mb-4">
+                                        Featured AI Agents
+                                    </h3>
+                                    <div class="space-y-4">
+                                        {featuredAgents
+                                            .slice(0, 1)
+                                            .map((agent) => (
+                                                <a
+                                                    href={`/agents/${agent.slug}`}
+                                                    class="block group"
+                                                >
+                                                    <div class="border border-border rounded-xl overflow-hidden hover:bg-surface transition-colors">
+                                                        {agent.data
+                                                            .heroImage && (
+                                                            <div class="aspect-video overflow-hidden">
+                                                                <img
+                                                                    src={
+                                                                        agent
+                                                                            .data
+                                                                            .heroImage
+                                                                    }
+                                                                    alt={
+                                                                        agent
+                                                                            .data
+                                                                            .heroImageAlt ||
+                                                                        `${agent.data.title} - Featured ${agent.data.category} agent`
+                                                                    }
+                                                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </a>
+                                            ))}
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>

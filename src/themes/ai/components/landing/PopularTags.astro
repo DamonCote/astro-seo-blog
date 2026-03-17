@@ -1,0 +1,64 @@
+---
+import { getTags } from "@/lib/data";
+import { normalizeTagName } from "@/lib/utils";
+import { getPublishedBlogPosts } from "@/lib/posts";
+
+// Get all non-draft posts from both locations
+const allPosts = await getPublishedBlogPosts();
+// Create normalized tag counts
+const normalizedTagCounts = new Map();
+
+const allPostTags = allPosts.flatMap((post) => post.data.tags || []);
+
+allPostTags.forEach((tag) => {
+    const normalized = normalizeTagName(tag);
+    normalizedTagCounts.set(
+        normalized,
+        (normalizedTagCounts.get(normalized) || 0) + 1,
+    );
+});
+
+const tagsData = await getTags();
+// Get all tags and sort by usage using normalized matching
+const popularTags = tagsData
+    .map((tag) => ({
+        name: tag.name, // Use the canonical name from JSON file
+        count: normalizedTagCounts.get(normalizeTagName(tag.name)) || 0,
+    }))
+    .filter((tag) => tag.count > 0) // Only show tags that are actually used
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 100)
+    .map((tag) => tag.name);
+---
+
+<section class="py-12 lg:py-16">
+    <div class="container max-w-6xl">
+        <div class="row items-center mb-10">
+            <div class="col-lg-6">
+                <div class="mb-1">
+                    <h2 class="font-bold leading-tight text-2xl">
+                        Popular Tags
+                    </h2>
+                </div>
+            </div>
+            <div class="col-lg-6 text-right"></div>
+        </div>
+
+        <div class="space-y-1">
+            <div class="row">
+                <div class="flex flex-wrap gap-2">
+                    {
+                        popularTags.map((tag) => (
+                            <a
+                                href={`/blog/tag/${normalizeTagName(tag)}`}
+                                class="px-3 py-1 text-xs border border-border rounded-full hover:bg-text hover:text-background transition-all"
+                            >
+                                #{tag}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

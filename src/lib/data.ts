@@ -113,6 +113,17 @@ export async function getCategories(): Promise<Category[]> {
     return [];
   }
 }
+
+export async function getAgentCategories(): Promise<Category[]> {
+  try {
+    const data = await fs.readFile(path.join(process.cwd(), 'public/data/agent-categories/categories.json'), 'utf-8');
+    const { categories } = JSON.parse(data);
+    return categories;
+  } catch (e) {
+    console.error('Error loading categories from file:', e);
+    return [];
+  }
+}
 /**
  * Get tags dynamically from blog posts
  * This extracts all unique tags used in published posts

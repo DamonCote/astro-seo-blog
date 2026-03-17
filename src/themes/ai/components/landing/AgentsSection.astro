@@ -1,0 +1,82 @@
+---
+import { getPublishedAIAgents } from "@/lib/agents";
+import { formatDate } from "@/lib/utils";
+
+// Get the 6 latest AI agents
+const allAgents = await getPublishedAIAgents();
+const latestAgents = allAgents.slice(0, 6);
+---
+
+<section class="bg-surface py-12 lg:py-16">
+    <div class="container max-w-6xl">
+        <div class="row items-center mb-10">
+            <div class="col-lg-6">
+                <div class="mb-1">
+                    <h2 class="font-bold leading-tight text-2xl">AI Agents</h2>
+                </div>
+            </div>
+            <div class="col-lg-6 text-right">
+                <a
+                    href="/agents"
+                    class="inline-flex items-center gap-3 px-6 py-2 bg-text text-background rounded-full font-bold text-xs hover:bg-text/90 hover:scale-105 transition-all"
+                >
+                    VIEW ALL
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path
+                            d="M4 10H16M16 10L11 5M16 10L11 15"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="space-y-1">
+            <div class="row">
+                {
+                    latestAgents.map((agent, index) => (
+                        <div class="col-lg-4">
+                            <div class="agent-card">
+                                <div class="card-thumbnail">
+                                    <a
+                                        href={`/agents/${agent.slug}`}
+                                        title={agent.data.title}
+                                    >
+                                        <img
+                                            loading="lazy"
+                                            src={agent.data.heroImage}
+                                            alt={
+                                                agent.data.heroImageAlt ||
+                                                `${agent.data.title} `
+                                            }
+                                        />
+                                    </a>
+                                </div>
+                                <div class="card-header">
+                                    <a href={`/agents/${agent.slug}`}>
+                                        {agent.data.title}
+                                    </a>
+                                </div>
+                                <div class="card-description">
+                                    {agent.data.description}
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

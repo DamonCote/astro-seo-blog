@@ -1,7 +1,9 @@
 ---
 import BlogSection from "../components/landing/BlogSection.astro";
+import AgentsSection from "../components/landing/AgentsSection.astro";
 import FeatureSection from "../components/landing/FeatureSection.astro";
 import FaqsSection from "../components/landing/FaqsSection.astro";
+
 import { SITE_CONFIG } from "@/data/site-config";
 
 const homeStructuredData = {
@@ -38,7 +40,9 @@ const homeStructuredData = {
 ---
 
 <FeatureSection />
+
 <BlogSection />
+<AgentsSection />
 <FaqsSection />
 
 <!-- Schema.org Structured Data -->

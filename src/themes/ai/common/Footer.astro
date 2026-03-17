@@ -1,6 +1,6 @@
 ---
 import { SITE_CONFIG } from "@/data/site-config";
-
+import PopularTags from "../components/landing/PopularTags.astro";
 export interface Props {
     siteName?: string;
 }
@@ -12,6 +12,7 @@ const currentYear = new Date().getFullYear();
 <!-- Main Footer Start -->
 <footer class="main-footer">
     <div class="main-footer__shape-1 img-bounce"></div>
+    <div class="main-footer__top"><PopularTags /></div>
     <div class="main-footer__bottom">
         <div class="container">
             <div class="main-footer__bottom-inner">
@@ -21,6 +22,7 @@ const currentYear = new Date().getFullYear();
                     <a
                         href="https://astroseoblog.com/"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="hover:text-text transition-colors"
                         >AstroSeoBlog</a
                     > • MIT License

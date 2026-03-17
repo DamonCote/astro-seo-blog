@@ -139,8 +139,28 @@ body {
         color: #a9a7b0;
     }
 
+    .prose-custom
+        :is(
+            :where(pre):not(
+                    :where([class~="not-prose"], [class~="not-prose"] *)
+                )
+        ),
+    .prose-custom
+        :is(
+            :where(code):not(
+                    :where([class~="not-prose"], [class~="not-prose"] *)
+                )
+        ) {
+        background-color: rgba(#1e2938, 0.95);
+        color: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 5px;
+        font-size: 0.875em;
+    }
+
     .prose-custom {
-        p {
+        p,
+        li {
             a {
                 color: #ff6c1e;
                 text-decoration: none;

@@ -1,0 +1,156 @@
+---
+import { getCategories, getTags } from "../../lib/data";
+import { getPublishedAIAgents } from "../../lib/agents";
+import { formatDate, calculateReadingTime } from "../../lib/utils";
+import { normalizeTagName } from "../../lib/utils";
+import { getTranslations } from "../../config/i18n";
+import { DEFAULT_LANGUAGE, getLanguagePrefix } from "../../config/languages";
+import fs from "fs/promises";
+import path from "path";
+import { Agent } from "http";
+
+export interface Props {
+    post?: any; // Optional post data for author info
+    readingTime?: number;
+    language?: string; // Language for translations
+}
+
+const { post, readingTime, language = DEFAULT_LANGUAGE } = Astro.props;
+const t = getTranslations(language);
+const languagePrefix = getLanguagePrefix(language);
+
+// Get data for sidebar
+const allPosts = await getPublishedAIAgents();
+const featuredPost =
+    allPosts.find((p) => p.data.featured && p.slug !== post?.slug) ||
+    allPosts.find((p) => p.slug !== post?.slug) ||
+    allPosts[0];
+
+// Get related agents for sidebar (by shared tags and category)
+let relatedAgentsForSidebar = [];
+if (post) {
+    // Combine and deduplicate, prioritizing same category
+    const combinedAgents = [];
+    const uniqueAgents = Array.from(
+        new Map(combinedAgents.map((p) => [p.slug, p])).values(),
+    );
+    relatedAgentsForSidebar = uniqueAgents.slice(0, 5);
+}
+---
+
+<aside class="space-y-8 lg:sticky lg:top-8 lg:h-fit">
+    <!-- Go to All Agents -->
+    <div>
+        <a
+            href={post.data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-full text-text hover:bg-text hover:text-background transition-all text-sm font-medium w-full justify-center"
+        >
+            {`Go to ${post.data.title}`}
+        </a>
+    </div>
+
+    <!-- Related Agents in Sidebar -->
+    {
+        relatedAgentsForSidebar.length > 0 && (
+            <div class="border-t pt-8">
+                <h3 class="text-sm font-bold uppercase mb-4">
+                    {t.relatedAgents}
+                </h3>
+                <div class="space-y-4">
+                    {relatedAgentsForSidebar.map((relatedAgent) => (
+                        <a
+                            href={`/blog/${relatedAgent.slug}`}
+                            class="block group hover:bg-surface transition-colors rounded-lg p-2 -m-2"
+                        >
+                            <div class="flex gap-3">
+                                {relatedAgent.data.heroImage && (
+                                    <div class="w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg">
+                                        <img
+                                            src={relatedAgent.data.heroImage}
+                                            alt={
+                                                relatedAgent.data
+                                                    .heroImageAlt ||
+                                                relatedAgent.data.title
+                                            }
+                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                )}
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-sm font-semibold line-clamp-2 group-hover:opacity-70 transition-opacity">
+                                        {relatedAgent.data.title}
+                                    </h4>
+                                </div>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
+    <!-- Featured Article -->
+    {
+        featuredPost && (
+            <div class="border-t pt-8">
+                <h3 class="text-sm font-bold uppercase mb-4">
+                    {t.featuredArticle}
+                </h3>
+                <a href={`/agents/${featuredPost.slug}`} class="block group">
+                    <div class="border border-border rounded-xl overflow-hidden hover:bg-surface transition-colors">
+                        {featuredPost.data.heroImage && (
+                            <div class="aspect-video overflow-hidden">
+                                <img
+                                    src={featuredPost.data.heroImage}
+                                    alt={
+                                        featuredPost.data.heroImageAlt ||
+                                        featuredPost.data.title
+                                    }
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
+                                />
+                            </div>
+                        )}
+                        <div class="p-4">
+                            <h4 class="font-semibold line-clamp-2 mb-2 group-hover:opacity-80 transition-opacity">
+                                {featuredPost.data.title}
+                            </h4>
+                            <p class="text-sm text-text-muted line-clamp-2">
+                                {featuredPost.data.description}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        )
+    }
+
+    <!-- Article Info -->
+    {
+        post && readingTime && (
+            <div class="border-t pt-8">
+                <h3 class="text-sm font-bold uppercase mb-4">
+                    {t.articleInfo}
+                </h3>
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-text-muted">{t.readingTime}</span>
+                        <span class="font-medium">
+                            {readingTime} {t.minRead}
+                        </span>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span class="text-text-muted">{t.published}</span>
+                        <span class="font-medium">
+                            {formatDate(post.data.publishDate)}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+</aside>
